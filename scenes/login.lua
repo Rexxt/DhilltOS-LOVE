@@ -1,7 +1,7 @@
 local LoginScreen = {
     load = function(self, game)
-        self.GUI = DCL.server()
-        self.Test = DCL.button(200, 200, 100, 50, 'Click me!')
+        self.GUI = DCL.Server()
+        self.Test = DCL.Button(200, 200, 100, 50, 'Click me!')
         self.GUI:add('test', self.Test)
     end,
 

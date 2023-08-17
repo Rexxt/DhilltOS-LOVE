@@ -32,10 +32,7 @@ Object = require "classic"
 print('[OK]')
 
 io.write('  Importing DCL... ')
-DCL = {
-	server = using "dcl.server",
-	button = using "dcl.button",
-}
+DCL = using "dcl"
 print('[OK]')
 
 io.write('Loading system resources... ')
