@@ -1,7 +1,7 @@
 local novum = require 'novum'
 
 novum.title = 'DhilltOS'
-novum.versioning.game = '0.1.0'
+novum.versioning.game = '0.1.1'
 
 print(novum.title .. ' ('..novum.versioning.game..')')
 
@@ -52,14 +52,22 @@ SYSTEM = {
 }
 print('[OK]')
 
-novum:hookCallback('overlay', function()
-	love.graphics.setColor(1,1,1,1)
-	local x, y = love.mouse.getPosition()
-	local cs = 48
-	love.graphics.draw(SYSTEM.cursors.normal, x, y, 0, cs/SYSTEM.cursors.normal:getWidth(), cs/SYSTEM.cursors.normal:getHeight())
+io.write('Loading graphical cursor system... ')
+CURSORSTATE = 'normal'
+novum:hookCallback('update', function()
+	CURSORSTATE = 'normal'
 end)
+novum:hookCallback('overlay', function()
+	if CURSORSTATE ~= 'hidden' then
+		love.graphics.setColor(1,1,1,1)
+		local x, y = love.mouse.getPosition()
+		local cs = 48
+		love.graphics.draw(SYSTEM.cursors[CURSORSTATE], x, y, 0, cs/SYSTEM.cursors.normal:getWidth(), cs/SYSTEM.cursors.normal:getHeight())
+	end
+end)
+print('[OK]')
 
-print('Starting GUI mode...')
+print('Starting GUI mode!')
 print('we ballin')
 
 -- the GUI toolkit (vstorage/lib/dcl)

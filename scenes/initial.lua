@@ -4,6 +4,7 @@ local Boot = {
     end,
 
     update = function(self, game, dt)
+        CURSORSTATE = 'hidden'
         self.bootTimer:update(dt)
         if self.bootTimer:progress() >= 1 then
             game:switchSceneByTransition("login", "slideIn", 0.75)
