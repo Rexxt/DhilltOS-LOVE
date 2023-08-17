@@ -61,8 +61,8 @@ novum:hookCallback('overlay', function()
 	if CURSORSTATE ~= 'hidden' then
 		love.graphics.setColor(1,1,1,1)
 		local x, y = love.mouse.getPosition()
-		local cs = 48
-		love.graphics.draw(SYSTEM.cursors[CURSORSTATE], x, y, 0, cs/SYSTEM.cursors.normal:getWidth(), cs/SYSTEM.cursors.normal:getHeight())
+		local cs = 56
+		love.graphics.draw(SYSTEM.cursors[CURSORSTATE], x, y, 0, cs/SYSTEM.cursors[CURSORSTATE]:getWidth(), cs/SYSTEM.cursors[CURSORSTATE]:getHeight(), SYSTEM.cursors[CURSORSTATE]:getWidth()/2, SYSTEM.cursors[CURSORSTATE]:getHeight()/2)
 	end
 end)
 print('[OK]')
