@@ -12,8 +12,18 @@ novum:discoverAllScenes()
 novum:discoverAllTransitions()
 print('[OK]')
 
+io.write('Adding math helpers... ')
+function math.interpolationWrapper(fn)
+	return function(a, b, t)
+		return a + (b-a)*fn(t)
+	end
+end
+math.lerp = math.interpolationWrapper(function(x) return x end)
+math.smoothInterpolation = math.interpolationWrapper(function(x) return x*x*(3-2*x) end)
+print('[OK]')
+
 print('Loading system-relative toolkits: ')
-io.write('  Creating "using" function..')
+io.write('  Creating "using" function... ')
 function using(mod)
 	if type(mod) == 'string' then
 		return require('vstorage.lib.' .. mod)

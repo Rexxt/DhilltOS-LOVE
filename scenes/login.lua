@@ -9,8 +9,8 @@ local LoginScreen = {
         local x, y = love.mouse.getPosition()
         self.GUI:update(dt)
         if self.Test.clicked then
-            self.Test.x = x
-            self.Test.y = y
+            self.Test.x = (self.Test.x + x)/2
+            self.Test.y = (self.Test.y + y)/2
         end
     end,
 
