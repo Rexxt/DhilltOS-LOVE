@@ -28,8 +28,7 @@ local Transition = {
         love.graphics.setBlendMode("alpha")
 
         love.graphics.setColor(1,1,1,1-position)
-        love.graphics.draw(self.canvas1, 0, 0)
-        
+        love.graphics.draw(self.canvas1, 0, math.smoothInterpolation(0, self.canvas1:getHeight()/2, position))
         
         love.graphics.setColor(1,1,1,1)
         love.graphics.draw(self.canvas2, 0, math.smoothInterpolation(-self.canvas2:getHeight(), 0, position))

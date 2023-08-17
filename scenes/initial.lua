@@ -17,7 +17,7 @@ local Boot = {
         local slideUpProgress = math.max(0, math.min(1, (self.bootTimer:progress())/0.1))
         local slideUpProgressSmooth = math.smoothInterpolation(0, 1, slideUpProgress)
         
-        love.graphics.setColor(1, 1-formedSin, 1-formedSin, slideUpProgressSmooth)
+        love.graphics.setColor(1, 1-formedSin, 1-formedSin, slideUpProgress^3)
         love.graphics.draw(image, love.graphics.getWidth()/2-image:getWidth()/2, love.graphics.getHeight()/(1+slideUpProgressSmooth)-image:getHeight()/2)
 
         if love.keyboard.isDown('space') then
