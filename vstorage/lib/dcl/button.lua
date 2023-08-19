@@ -41,6 +41,11 @@ function Button:draw(server)
     love.graphics.setFont(self.currentStyle.font)
     love.graphics.setColor(self.currentStyle.background)
     love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.currentStyle.rounding)
+    if self.currentStyle.outline and self.currentStyle.outline.size > 0 then
+        love.graphics.setLineWidth(self.currentStyle.outline.size)
+        love.graphics.setColor(self.currentStyle.outline.color)
+        love.graphics.rectangle('line', self.x, self.y, self.width, self.height, self.currentStyle.rounding)
+    end
     love.graphics.setColor(self.currentStyle.foreground)
     love.graphics.printf(self.label, self.x + self.width/2 - self.currentStyle.font:getWidth(self.label)/2, self.y + self.height/2 - self.currentStyle.font:getHeight()/2, self.currentStyle.font:getWidth(self.label))
 

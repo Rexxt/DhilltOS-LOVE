@@ -19,8 +19,13 @@ end
 
 function GUI:update(dt)
     for k, v in pairs(self.components) do
+        function self:grabFocus()
+            self.focus = k
+            return self.focus
+        end
         v:update(self, dt)
     end
+    self.grabFocus = nil
 end
 
 function GUI:draw()
