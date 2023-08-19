@@ -49,7 +49,12 @@ io.write('Loading system resources... ')
 SYSTEM = {
 	images = novum.autoImport('image', 'vstorage/sys/img'),
 	cursors = novum.autoImport('image', 'vstorage/sys/cursors'),
+	icons = novum.autoImport('image', 'vstorage/sys/icons'),
 }
+print('[OK]')
+
+io.write('  Importing internal error toast system... ')
+novum.toasts.renderSingle = using "toasts"
 print('[OK]')
 
 io.write('Loading graphical cursor system... ')

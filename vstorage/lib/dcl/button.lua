@@ -14,7 +14,24 @@ function Button:new(x, y, width, height, label)
 end
 
 function Button:update(server, dt)
-    self.super.update(self, server, dt)
+    local events = self.super.update(self, server, dt)
+    for i, v in ipairs(events) do
+        if self[v] then
+            self[v](self, server)
+        end
+    end
+end
+
+function Button:mouseIn(server)
+end
+
+function Button:mouseOut(server)
+end
+
+function Button:mouseDown(server)
+end
+
+function Button:mouseUp(server)
 end
 
 function Button:draw(server)

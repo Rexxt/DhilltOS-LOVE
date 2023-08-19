@@ -44,6 +44,7 @@ function Component:update(server, dt)
         end
         self.currentStyle = self.style.base
     end
+    return events
 end
 
 function Component:draw(server)

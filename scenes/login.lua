@@ -2,6 +2,12 @@ local LoginScreen = {
     load = function(self, game)
         self.GUI = DCL.Server()
         self.Test = DCL.Button(200, 200, 250, 50, 'Click me!')
+        function self.Test:mouseDown(server)
+            game.toasts:post('info', self.x..';'..self.y)
+        end
+        function self.Test:mouseUp(server)
+            game.toasts:post('success', self.x..';'..self.y)
+        end
         self.GUI:add('test', self.Test)
     end,
 
@@ -12,8 +18,8 @@ local LoginScreen = {
             CURSORSTATE = 'text'
         end
         if self.Test.isMouseDown then
-            self.Test.x = (self.Test.x + x)/2
-            self.Test.y = (self.Test.y + y)/2
+            self.Test.x = x - self.Test.width/2
+            self.Test.y = y - self.Test.height/2
         end
     end,
 
