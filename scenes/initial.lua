@@ -7,7 +7,8 @@ local Boot = {
         CURSORSTATE = 'hidden'
         self.bootTimer:update(dt)
         if self.bootTimer:progress() >= 1 then
-            game:switchSceneByTransition("login", "slideIn", 0.75)
+            local users = love.filesystem.getDirectoryItems('vstorage/usr/')
+            game:switchSceneByTransition((#users >= 1) and "login" or "oobe", "slideIn", 0.75)
         end
     end,
 

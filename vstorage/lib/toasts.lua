@@ -33,7 +33,7 @@ return function(self, toast, decay, x, y)
     local actualX = love.graphics.getWidth()/2 - toastWidth/2
 
     love.graphics.setFont(self.toastFont)
-    love.graphics.setColor(0.2, 0.2, 0.2, toastAlpha)
+    love.graphics.setColor(0.1, 0.1, 0.1, toastAlpha)
     love.graphics.rectangle('fill', actualX, toastAnimatedY, toastWidth, toastHeight, toastHeight/2)
 
     love.graphics.setColor(colour[1], colour[2], colour[3], toastAlpha)

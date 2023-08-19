@@ -72,8 +72,20 @@ novum:hookCallback('overlay', function()
 end)
 print('[OK]')
 
+io.write('Verifying user list... ')
+local users = love.filesystem.getDirectoryItems('vstorage/usr/')
+print('['..#users..' users]')
+if #users < 1 then
+	print('Out Of Box Experience will be launched.')
+	novum.toasts:post('info', 'It seems like it\'s your first time here. We will launch the setup wizard for you.')
+end
+
 print('Starting GUI mode!')
-print('we ballin')
+quotes = {
+	'"we ballin"\n- kevadesu',
+	'"forget linux, this is the real stuff"\n- Mizu',
+}
+print(quotes[math.random(1, #quotes)])
 
 -- the GUI toolkit (vstorage/lib/dcl)
 -- i already started a small server that doesn't support interaction yet
