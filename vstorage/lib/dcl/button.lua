@@ -1,33 +1,20 @@
--- graphical user interface server
-local Button = Object:extend()
+-- clickable object
+local Button = using("dcl.component"):extend()
 
 function Button:new(x, y, width, height, label)
+    self.super.new(self)
     self.x = x
     self.y = y
     self.width = width
     self.height = height
     self.label = label
+
     self.style = using("dcl.styles").Button.primary
-    self.hovered = false
-    self.clicked = false
     self.currentStyle = self.style.base
 end
 
 function Button:update(server, dt)
-    local x, y = love.mouse.getPosition()
-    if x >= self.x and x <= (self.x + self.width) and y >= self.y and y <= (self.y + self.height) then
-        self.hovered = true
-        if love.mouse.isDown(1) then
-            self.clicked = true
-            self.currentStyle = self.style.click
-        else
-            self.clicked = false
-            self.currentStyle = self.style.hover
-        end
-    else
-        self.hovered = false
-        self.currentStyle = self.style.base
-    end
+    self.super.update(self, server, dt)
 end
 
 function Button:draw(server)

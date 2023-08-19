@@ -8,10 +8,10 @@ local LoginScreen = {
     update = function(self, game, dt)
         local x, y = love.mouse.getPosition()
         self.GUI:update(dt)
-        if self.Test.hovered then
+        if self.Test.isMouseIn then
             CURSORSTATE = 'text'
         end
-        if self.Test.clicked then
+        if self.Test.isMouseDown then
             self.Test.x = (self.Test.x + x)/2
             self.Test.y = (self.Test.y + y)/2
         end
