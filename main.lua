@@ -51,6 +51,7 @@ SYSTEM = {
 	cursors = novum.autoImport('image', 'vstorage/sys/cursors'),
 	icons = novum.autoImport('image', 'vstorage/sys/icons'),
 }
+SYSTEM.cursors.hidden = true
 print('[OK]')
 
 io.write('  Importing internal error toast system... ')
@@ -62,7 +63,15 @@ CURSORSTATE = 'normal'
 novum:hookCallback('update', function()
 	CURSORSTATE = 'normal'
 end)
+local CURSORSTATEERROR = ''
 novum:hookCallback('overlay', function()
+	if not SYSTEM.cursors[CURSORSTATE] then
+		if CURSORSTATE ~= CURSORSTATEERROR then
+			novum.toasts:post('error', 'Attempted to set invalid cursor state "'..CURSORSTATE..'". Falling back to "normal".')
+		end
+		CURSORSTATEERROR = CURSORSTATE
+		CURSORSTATE = 'normal'
+	end
 	if CURSORSTATE ~= 'hidden' then
 		love.graphics.setColor(1,1,1,1)
 		local x, y = love.mouse.getPosition()

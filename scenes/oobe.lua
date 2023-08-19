@@ -4,25 +4,22 @@ local OOBEScreen = {
         self.mainFont = love.graphics.newFont(18)
         self.GUI = DCL.Server()
 
-        self.Test = DCL.Button(200, 200, 250, 50, 'Click me!')
-        function self.Test:mouseDown(server)
+        self.NextButton = DCL.Button(love.graphics.getWidth()/3*2-115, love.graphics.getHeight()-65, 100, 50, 'Next')
+        function self.NextButton:mouseDown(server)
             game.toasts:post('info', self.x..';'..self.y)
         end
-        function self.Test:mouseUp(server)
+        function self.NextButton:mouseUp(server)
             game.toasts:post('success', self.x..';'..self.y)
         end
-        self.GUI:add('test', self.Test)
+        self.GUI:add('next', self.NextButton)
     end,
 
     update = function(self, game, dt)
         local x, y = love.mouse.getPosition()
         self.GUI:update(dt)
-        if self.Test.isMouseIn then
-            CURSORSTATE = 'text'
-        end
-        if self.Test.isMouseDown then
-            self.Test.x = x - self.Test.width/2
-            self.Test.y = y - self.Test.height/2
+        if self.NextButton.isMouseDown then
+            self.NextButton.x = x - self.NextButton.width/2
+            self.NextButton.y = y - self.NextButton.height/2
         end
     end,
 
