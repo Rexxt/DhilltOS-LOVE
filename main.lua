@@ -86,9 +86,3 @@ quotes = {
 	'"forget linux, this is the real stuff"\n- Mizu',
 }
 print(quotes[math.random(1, #quotes)])
-
--- the GUI toolkit (vstorage/lib/dcl)
--- i already started a small server that doesn't support interaction yet
--- nor does it update
--- nor does it render lmao
--- lmao
