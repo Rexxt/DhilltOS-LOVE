@@ -6,6 +6,7 @@
     alt="Gitmoji"
   />
 </a>
+<img alt="Static Badge" src="https://img.shields.io/badge/powered%20by-L%C3%96VE-25aae1?style=flat-square">
 
  dhilltos but for love2d cause it's easier to port programs between love2d and computercraft
 
