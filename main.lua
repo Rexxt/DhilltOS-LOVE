@@ -85,4 +85,4 @@ quotes = {
 	'"we ballin"\n- kevadesu',
 	'"forget linux, this is the real stuff"\n- Mizu',
 }
-print(quotes[math.random(1, #quotes)])
+print(quotes[love.math.random(#quotes)])
