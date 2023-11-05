@@ -4,26 +4,26 @@ local OOBEScreen = {
         self.mainFont = love.graphics.newFont(18)
         self.GUI = DCL.Server()
 
-        self.NextButton = DCL.Button(love.graphics.getWidth()/3*2-115, love.graphics.getHeight()-65, 100, 50, 'Next')
+        self.NextButton = DCL.Button(love.graphics.getWidth()/3*2-215, love.graphics.getHeight()-65, 200, 50, 'Restart')
         function self.NextButton:mouseDown(server)
-            game.toasts:post('info', self.x..';'..self.y)
+            game.toasts:post('info', 'Release the button to restart.')
         end
         function self.NextButton:mouseUp(server)
-            game.toasts:post('success', self.x..';'..self.y)
+            game.toasts:post('success', 'Restarting!')
+            game:switchSceneByTransition("initial", "slideIn", 0.75)
         end
         self.GUI:add('next', self.NextButton)
 
         self.TestTextBox = DCL.TextBox(200, 200, 500, 50)
         self.GUI:add('ttb', self.TestTextBox)
+
+        self.TestTextBox2 = DCL.TextBox(200, 250, 500, 50)
+        self.GUI:add('ttb2', self.TestTextBox2)
     end,
 
     update = function(self, game, dt)
         local x, y = love.mouse.getPosition()
         self.GUI:update(dt)
-        if self.NextButton.isMouseDown then
-            self.NextButton.x = x - self.NextButton.width/2
-            self.NextButton.y = y - self.NextButton.height/2
-        end
     end,
     
     textinput = function(self, game, t)

@@ -3,6 +3,10 @@ local Boot = {
         self.bootTimer = game.timer(0, 5)
     end,
 
+    opened = function(self, game)
+        self.bootTimer.current = 0
+    end,
+
     update = function(self, game, dt)
         CURSORSTATE = 'hidden'
         self.bootTimer:update(dt)

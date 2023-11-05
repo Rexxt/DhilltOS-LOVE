@@ -93,5 +93,7 @@ print('Starting GUI mode!')
 quotes = {
 	'"we ballin"\n- kevadesu',
 	'"forget linux, this is the real stuff"\n- Mizu',
+	'"designing a full graphical user interface toolkit from scratch is very fun :3 (save me)"\n- Mizu',
+	'"A computer is like air conditioning; it becomes useless when you open windows"\n- Lap'
 }
 print(quotes[love.math.random(#quotes)])

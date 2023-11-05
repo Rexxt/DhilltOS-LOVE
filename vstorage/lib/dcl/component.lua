@@ -1,12 +1,12 @@
 -- component masterclass, gives component a set of properties
-local Component = Object .. {}
+local Component = Object:extend()
 
 function Component:new()
-    self.x = x
-    self.y = y
-    self.width = width
-    self.height = height
-    self.label = label
+    self.x = 0
+    self.y = 0
+    self.width = 0
+    self.height = 0
+    self.label = "text"
     self.style = {}
     self.isMouseIn = false
     self.isMouseDown = false

@@ -1,5 +1,3 @@
--- this OOP module is based on previous work:
-
 --
 -- classic
 --
@@ -28,14 +26,6 @@ function Object:extend()
 	cls.__index = cls
 	cls.super = self
 	setmetatable(cls, self)
-	return cls
-end
-
-function Object:__concat(t)
-	local cls = self:extend()
-	for k, v in pairs(t) do
-		cls[k] = v
-	end
 	return cls
 end
 
@@ -72,7 +62,5 @@ function Object:__call(...)
 	obj:new(...)
 	return obj
 end
-
-setmetatable(Object, Object)
 
 return Object
