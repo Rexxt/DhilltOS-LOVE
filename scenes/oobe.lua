@@ -12,6 +12,9 @@ local OOBEScreen = {
             game.toasts:post('success', self.x..';'..self.y)
         end
         self.GUI:add('next', self.NextButton)
+
+        self.TestTextBox = DCL.TextBox(200, 200, 500, 50)
+        self.GUI:add('ttb', self.TestTextBox)
     end,
 
     update = function(self, game, dt)
@@ -21,6 +24,14 @@ local OOBEScreen = {
             self.NextButton.x = x - self.NextButton.width/2
             self.NextButton.y = y - self.NextButton.height/2
         end
+    end,
+    
+    textinput = function(self, game, t)
+        self.GUI:textinput(t)
+    end,
+
+    keypressed = function(self, game, key)
+        self.GUI:keypressed(key)
     end,
 
     draw = function(self, game)

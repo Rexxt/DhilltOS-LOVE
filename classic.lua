@@ -1,3 +1,5 @@
+-- this OOP module is based on previous work:
+
 --
 -- classic
 --
@@ -29,6 +31,13 @@ function Object:extend()
 	return cls
 end
 
+function Object:__concat(t)
+	local cls = self:extend()
+	for k, v in pairs(t) do
+		cls[k] = v
+	end
+	return cls
+end
 
 function Object:implement(...)
 	for _, cls in pairs({...}) do
@@ -64,5 +73,6 @@ function Object:__call(...)
 	return obj
 end
 
+setmetatable(Object, Object)
 
 return Object

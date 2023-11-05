@@ -15,6 +15,13 @@ end
 
 function Button:update(server, dt)
     local events = self.super.update(self, server, dt)
+    self.currentStyle = self.style.base
+    if self.isMouseIn then
+        self.currentStyle = self.style.hover
+    end
+    if self.isMouseDown then
+        self.currentStyle = self.style.click
+    end
     for i, v in ipairs(events) do
         if self[v] then
             self[v](self, server)

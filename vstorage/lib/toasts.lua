@@ -7,10 +7,10 @@ return function(self, toast, decay, x, y)
 
     local toastColours = {
         success = {0.3,   1, 0.3},
-        debug = {0.6, 0.6, 0.6},
-        info  = {0.5, 0.7, 0.9},
-        warn  = {1,   0.7, 0.1},
-        error = {1,   0.3, 0.3},
+        debug   = {0.6, 0.6, 0.6},
+        info    = {0.5, 0.7, 0.9},
+        warn    = {1,   0.7, 0.1},
+        error   = {1,   0.3, 0.3},
     }
     local colour = toastColours[toast.type]
 

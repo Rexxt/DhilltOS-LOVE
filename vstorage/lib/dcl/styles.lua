@@ -35,4 +35,28 @@ return {
             },
         },
     },
+    TextBox = {
+        primary = {
+            base = {
+                rounding = 10,
+                background = {1, 1, 1, 1},
+                foreground = {0, 0, 0, 1},
+                outline = {
+                    size = 1,
+                    color = {0.5, 0.5, 0.5, 1},
+                },
+                font = love.graphics.newFont(18),
+            },
+            focus = {
+                rounding = 10,
+                background = {1, 1, 1, 1},
+                foreground = {0, 0, 0, 1},
+                outline = {
+                    size = 2,
+                    color = {0.5, 0.5, 0.5, 1},
+                },
+                font = love.graphics.newFont(18),
+            },
+        },
+    },
 }

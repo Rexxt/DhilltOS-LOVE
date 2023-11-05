@@ -1,5 +1,5 @@
 -- component masterclass, gives component a set of properties
-local Component = Object:extend()
+local Component = Object .. {}
 
 function Component:new()
     self.x = x
@@ -20,18 +20,15 @@ function Component:update(server, dt)
         if not self.isMouseIn then
             table.insert(events, 'mouseIn')
             self.isMouseIn = true
-            self.currentStyle = self.style.hover
         end
         if love.mouse.isDown(1) then
             if not self.isMouseDown then
                 table.insert(events, 'mouseDown')
                 self.isMouseDown = true
-                self.currentStyle = self.style.click
             end
         elseif self.isMouseDown then
             table.insert(events, 'mouseUp')
             self.isMouseDown = false
-            self.currentStyle = self.style.hover
         end
     else
         if self.isMouseIn then
@@ -42,7 +39,6 @@ function Component:update(server, dt)
             table.insert(events, 'mouseUp')
             self.isMouseDown = false
         end
-        self.currentStyle = self.style.base
     end
     return events
 end
