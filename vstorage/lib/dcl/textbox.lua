@@ -12,6 +12,8 @@ function TextBox:new(x, y, width, height, placeholder, default, inType)
     self.inType = inType or "text"
     self.cursorPos = #self.value
 
+    self.isPassword = false
+
     self.style = using("dcl.styles").TextBox.primary
     self.currentStyle = self.style.base
 
@@ -46,6 +48,14 @@ end
 function TextBox:mouseUp(server)
 end
 
+local function composePasswordString(length)
+    local s = ''
+    for i=1,length do
+        s = s .. '•'
+    end
+    return s
+end
+
 function TextBox:redraw()
     self.canvas:renderTo(function()
         love.graphics.clear()
@@ -53,11 +63,19 @@ function TextBox:redraw()
 
         love.graphics.setColor(0, 0, 0, 1)
         love.graphics.setFont(self.currentStyle.font)
-        love.graphics.printf(self.value, 0, 0, self.currentStyle.font:getWidth(self.value), 'left')
+        if not self.isPassword then
+            love.graphics.printf(self.value, 0, 0, self.currentStyle.font:getWidth(self.value), 'left')
+        else
+            love.graphics.printf(composePasswordString(#self.value), 0, 0, self.currentStyle.font:getWidth(composePasswordString(#self.value)), 'left')
+        end
         if self.focus then
             local formedSin = (math.sin(love.timer.getTime()*math.pi*2)+1)/2
             love.graphics.setColor(1, 0.25, 0, formedSin)
-            love.graphics.line(self.currentStyle.font:getWidth(string.sub(self.value, 0, self.cursorPos)), 0, self.currentStyle.font:getWidth(string.sub(self.value, 0, self.cursorPos)), self.currentStyle.font:getHeight())
+            if not self.isPassword then
+                love.graphics.line(self.currentStyle.font:getWidth(string.sub(self.value, 0, self.cursorPos)), 0, self.currentStyle.font:getWidth(string.sub(self.value, 0, self.cursorPos)), self.currentStyle.font:getHeight())
+            else
+                love.graphics.line(self.currentStyle.font:getWidth(composePasswordString(self.cursorPos)), 0, self.currentStyle.font:getWidth(composePasswordString(self.cursorPos)), self.currentStyle.font:getHeight())
+            end
         end
 
         love.graphics.setFont(oFont)

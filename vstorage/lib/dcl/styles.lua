@@ -1,5 +1,7 @@
 -- collection of styles for components
 
+local default_font = love.graphics.newFont(18)
+
 return {
     Button = {
         primary = {
@@ -11,7 +13,7 @@ return {
                     size = 0,
                     color = {1, 1, 1, 1},
                 },
-                font = love.graphics.newFont(18),
+                font = default_font,
             },
             hover = {
                 rounding = 10,
@@ -21,7 +23,7 @@ return {
                     size = 0,
                     color = {1, 1, 1, 1},
                 },
-                font = love.graphics.newFont(18),
+                font = default_font,
             },
             click = {
                 rounding = 10,
@@ -31,7 +33,7 @@ return {
                     size = 0,
                     color = {1, 1, 1, 1},
                 },
-                font = love.graphics.newFont(18),
+                font = default_font,
             },
         },
     },
@@ -45,7 +47,7 @@ return {
                     size = 1,
                     color = {0.5, 0.5, 0.5, 1},
                 },
-                font = love.graphics.newFont(18),
+                font = default_font,
             },
             focus = {
                 rounding = 10,
@@ -55,7 +57,7 @@ return {
                     size = 2,
                     color = {0.5, 0.5, 0.5, 1},
                 },
-                font = love.graphics.newFont(18),
+                font = default_font,
             },
         },
     },

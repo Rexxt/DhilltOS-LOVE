@@ -1,7 +1,9 @@
 local novum = require 'novum'
 
+local system_start = love.timer.getTime()
+
 novum.title = 'DhilltOS'
-novum.versioning.game = '0.1.1'
+novum.versioning.game = '0.2.0'
 
 print(novum.title .. ' ('..novum.versioning.game..')')
 
@@ -44,6 +46,10 @@ print('[OK]')
 io.write('  Importing DCL... ')
 DCL = using "dcl"
 print('[OK]')
+io.write('  Importing FontManager... ')
+FontManager = using "fontmanager"
+FontManager:setFont(12)
+print('[OK]')
 
 io.write('Loading system resources... ')
 SYSTEM = {
@@ -83,13 +89,41 @@ print('[OK]')
 
 io.write('Verifying user list... ')
 local users = love.filesystem.getDirectoryItems('vstorage/usr/')
-print('['..#users..' users]')
+print('['..#users..' user(s)]')
 if #users < 1 then
 	print('Out Of Box Experience will be launched.')
 	novum.toasts:post('info', 'It seems like it\'s your first time here. We will launch the setup wizard for you.')
 end
 
+io.write('Creating status overlay (F12)... ')
+novum:hookCallback('overlay', function(game)
+	if love.keyboard.isDown('f12') then
+		love.graphics.setColor(0, 0, 0, 0.5)
+		love.graphics.rectangle('fill', 0, 0, 300, love.graphics.getHeight())
+		FontManager:setFont(12)
+		love.graphics.setColor(1, 1, 1)
+		love.graphics.printf('Uptime', 0, 0, 300, 'left')
+		love.graphics.printf(string.format("%.3f", love.timer.getTime()-system_start), 0, 0, 300, 'right')
+		love.graphics.printf('Resolution', 0, 12*1, 300, 'left')
+		love.graphics.printf(love.graphics.getWidth() .. 'x' .. love.graphics.getHeight(), 0, 12*1, 300, 'right')
+		love.graphics.printf('Host platform', 0, 12*2, 300, 'left')
+		love.graphics.printf(love.system.getOS(), 0, 12*2, 300, 'right')
+		love.graphics.printf('Processors', 0, 12*3, 300, 'left')
+		love.graphics.printf(love.system.getProcessorCount(), 0, 12*3, 300, 'right')
+		local state, percent, seconds = love.system.getPowerInfo()
+		love.graphics.printf('Power state', 0, 12*4, 300, 'left')
+		love.graphics.printf(state, 0, 12*4, 300, 'right')
+		love.graphics.printf('Battery SoC', 0, 12*5, 300, 'left')
+		love.graphics.printf(tostring(percent), 0, 12*5, 300, 'right')
+		love.graphics.printf('Battery time left', 0, 12*6, 300, 'left')
+		love.graphics.printf(tostring(seconds), 0, 12*6, 300, 'right')
+	end
+end)
+print('[OK]')
+
 print('Starting GUI mode!')
+
+print()
 quotes = {
 	'"we ballin"\n- kevadesu',
 	'"forget linux, this is the real stuff"\n- Mizu',

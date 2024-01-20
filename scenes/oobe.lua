@@ -10,7 +10,10 @@ local OOBEScreen = {
         end
         function self.NextButton:mouseUp(server)
             game.toasts:post('success', 'Restarting!')
-            game:switchSceneByTransition("initial", "slideIn", 0.75)
+
+            success = love.filesystem.createDirectory('vstorage/usr/'..server.components.ttb.value)
+
+            love.event.quit("restart")
         end
         self.GUI:add('next', self.NextButton)
 
@@ -18,6 +21,7 @@ local OOBEScreen = {
         self.GUI:add('ttb', self.TestTextBox)
 
         self.TestTextBox2 = DCL.TextBox(200, 250, 500, 50)
+        self.TestTextBox2.isPassword = true
         self.GUI:add('ttb2', self.TestTextBox2)
     end,
 
@@ -50,8 +54,12 @@ local OOBEScreen = {
         love.graphics.rectangle('fill', 0, 0, love.graphics.getWidth()/3*2, love.graphics.getHeight(), ls)
 
         love.graphics.setColor(0.2, 0.2, 0.2, 1)
-        love.graphics.setFont(self.titleFont)
+        FontManager:setFont(36)
         love.graphics.printf('Welcome to DhilltOS!', 30, 30, love.graphics.getWidth() - 60, 'left')
+
+        FontManager:setFont(18)
+        love.graphics.printf('Fill in the information below to start using DhilltOS ' .. game.versioning.game .. '.', 30, 30 + self.titleFont:getHeight(), love.graphics.getWidth() - 60, 'left')
+
         self.GUI:draw()
     end
 }
