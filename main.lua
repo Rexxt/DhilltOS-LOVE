@@ -27,15 +27,18 @@ print('[OK]')
 print('Loading system-relative toolkits: ')
 io.write('  Creating "using" function... ')
 function using(mod)
+	local orig_rq_paths = love.filesystem.getRequirePath( )
+	love.filesystem.setRequirePath('vstorage/lib/?.lua;vstorage/lib/?/init.lua')
 	if type(mod) == 'string' then
-		return require('vstorage.lib.' .. mod)
+		return require(mod)
 	elseif type(mod) == 'table' then
 		local modTable = {}
 		for i, v in ipairs(mod) do
-			table.insert(modTable, require('vstorage.lib.' .. v))
+			table.insert(modTable, require(v))
 		end
 		return (unpack or table.unpack)(modTable)
 	end
+	love.filesystem.setRequirePath(orig_rq_paths)
 end
 print('[OK]')
 
