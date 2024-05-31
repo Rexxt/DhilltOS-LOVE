@@ -91,12 +91,16 @@ end)
 print('[OK]')
 
 io.write('Verifying user list... ')
-local users = love.filesystem.getDirectoryItems('vstorage/usr/')
-print('['..#users..' user(s)]')
-if #users < 1 then
+USR = love.filesystem.getDirectoryItems('vstorage/usr/')
+print('['..#USR..' user(s)]')
+if #USR < 1 then
 	print('Out Of Box Experience will be launched.')
 	novum.toasts:post('info', 'It seems like it\'s your first time here. We will launch the setup wizard for you.')
 end
+
+io.write('Importing user manager... ')
+
+print('[OK]')
 
 io.write('Creating status overlay (F12)... ')
 novum:hookCallback('overlay', function(game)

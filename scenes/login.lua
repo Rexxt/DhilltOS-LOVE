@@ -1,6 +1,18 @@
 local LoginScreen = {
     load = function(self, game)
         self.GUI = DCL.Server()
+
+        self.userButtons = {}
+        for i, v in ipairs(USR) do
+            print(i, v)
+            local btn = DCL.Button(love.graphics.getWidth()/2-100*(#USR-i+1), love.graphics.getHeight()/2-25, 200, 50, v)
+            function btn:mouseDown(server)
+                game.toasts:post('info', 'Welcome, '..v..'.')
+                -- log in as user
+            end
+            table.insert(self.userButtons, btn)
+            self.GUI:add('button_'..v, btn)
+        end
     end,
 
     update = function(self, game, dt)

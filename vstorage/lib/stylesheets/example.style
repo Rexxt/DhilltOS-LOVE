@@ -1,0 +1,11 @@
+where
+    class is Button
+    type is primary
+apply
+    cornerRounding = 10
+    background = clr{ 000 128 255 255 }
+    foreground = clr{ 255 255 255 255 }
+    outline_size = 0
+    outline_color = clr{ 000 000 000 000 }
+    font = * 18
+done
